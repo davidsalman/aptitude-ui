@@ -1,0 +1,23 @@
+{
+  "database": {
+    "rules": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    }
+  },
+  "hosting": {
+    "public": "dist/public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "redirects": [],
+    "rewrites": [],
+    "headers": [],
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "appAssociation": "AUTO"
+  },
+  "functions": {
+    "source": "server",
+    "pre-deploy": [],
+    "ignore": []
+  }
+}
