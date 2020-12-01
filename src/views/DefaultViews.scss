@@ -1,0 +1,24 @@
+$background_color: white;
+$layout_margins: 42.5px auto;
+$max_width: 25%;
+$min_width: 360px;
+$media_max_width: 40%;
+$padding: 40px;
+$title_text_align: center;
+
+.auth-layout {
+  background-color: $background_color;
+  margin: $layout_margins;
+  max-width: $max_width;
+  min-width: $min_width;
+  padding: $padding;
+  .auth-title {
+    text-align: $title_text_align;
+  }
+}
+
+@media (max-width: 1200px) {
+  .auth-layout {
+    max-width: $media_max_width;
+  }
+}
