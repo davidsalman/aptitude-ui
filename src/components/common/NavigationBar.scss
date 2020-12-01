@@ -1,0 +1,21 @@
+$menu_icon_margin_top: -6px;
+$menu_icon_width: 32px;
+$menu_icon_heigth: 32px;
+$menu_icon_text: 18px;
+$line_height: 64px;
+
+.navigation-menu {
+  line-height: $line_height;
+  .navigation-menu-icon-item {
+    font-size: $menu_icon_text;
+    .navigation-menu-icon {
+      max-width: $menu_icon_width;
+      max-height: $menu_icon_heigth;
+      margin-top: $menu_icon_margin_top;
+    }
+  }
+  .navigation-menu-submenu,
+  .navigation-menu-auth-item {
+    float: right;
+  }
+}
