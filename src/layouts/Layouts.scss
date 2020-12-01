@@ -1,0 +1,56 @@
+/* Variables */
+
+$header_height: 65px;
+$footer_height: 40px;
+$foreground_color: rgba(255, 255, 255, 0.35);
+$background_color: rgb(00, 21, 42);
+$footer_text_align: center;
+
+/* Layouts Extends */
+
+%header-layout-base {
+  color: $foreground_color;
+  background-color: $background_color;
+  min-height: $header_height;
+}
+
+%content-layout-base {
+  background-color: $foreground_color;
+}
+
+%footer-layout-base {
+  color: $foreground_color;
+  background-color: $background_color;
+  min-height: $footer_height;
+  text-align: $footer_text_align;
+}
+
+/* Layout Mixins */
+
+@mixin calculateContentHeight($takenHeaderHeight, $takenFooterHeight) {
+  min-height: calc(97.2vh - (#{$takenHeaderHeight} + #{$takenFooterHeight}));
+}
+
+/* Layout Classes */
+
+.app-header {
+  @extend %header-layout-base;
+}
+
+.app-content {
+  @extend %content-layout-base;
+  @include calculateContentHeight($header_height, 0px);
+}
+
+.default-header {
+  @extend %header-layout-base;
+}
+
+.default-content {
+  @extend %content-layout-base;
+  @include calculateContentHeight($header_height, $footer_height);
+}
+
+.default-footer {
+  @extend %footer-layout-base;
+}
