@@ -16,7 +16,7 @@
     "appAssociation": "AUTO"
   },
   "functions": {
-    "source": "server",
+    "source": "functions",
     "pre-deploy": [],
     "ignore": []
   }
