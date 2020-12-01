@@ -1,0 +1,22 @@
+{
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "explorer.sortOrder": "type",
+  "explorer.incrementalNaming": "smart",
+  "files.associations": {
+    ".dockerignore": "dockerfile",
+    ".env-cmdrc": "env"
+  },
+  "files.exclude": {
+    "**/.git-crypt": true
+  },
+  "tslint.autoFixOnSave": true,
+  "tslint.configFile": "./tslint.json",
+  "tslint.packageManager": "yarn",
+  "prettier.configPath": ".prettierrc",
+  "prettier.packageManager": "yarn",
+  "prettier.printWidth": 120,
+  "prettier.singleQuote": true,
+  "tslint.run": "onSave",
+  "tslint.trace.server": "verbose"
+}
