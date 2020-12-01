@@ -1,0 +1,18 @@
+{
+  "rules": {
+    "boxes": {
+      ".read": "auth.uid === 'aptitude-box-service-worker'",
+      ".write": "auth.uid === 'aptitude-box-service-worker'"
+    },
+    "games": {
+      ".read": "auth.uid === 'aptitude-box-service-worker'",
+      ".write": "auth.uid === 'aptitude-box-service-worker'"
+    },
+    "users": {
+      "$uid": {
+        ".read": "auth.uid === $uid",
+        ".write": "auth.uid === $uid"
+      }
+    }
+  }
+}
