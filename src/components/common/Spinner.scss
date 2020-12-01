@@ -1,0 +1,19 @@
+$layout_length: 100%;
+$text_align: 'center';
+$margin_top: 26vh;
+$margin_bottom: 36vh;
+$text_margin_top: 2vh;
+$text_padding_left: 2vh;
+
+.spinner-layout {
+  width: $layout_length;
+  height: $layout_length;
+  .spinner-icon {
+    margin-top: $margin_top;
+    margin-bottom: $margin_bottom;
+    .ant-spin-text {
+      margin-top: $text_margin_top;
+      padding-left: $text_padding_left;
+    }
+  }
+}
