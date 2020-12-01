@@ -1,0 +1,21 @@
+$forget_password_line_height: 32px;
+$submit_button_width: 30%;
+$submit_button_min_width: 100px;
+$submit_button_postion: right;
+$recaptcha_margins: 0px auto;
+
+.auth-form {
+  a {
+    line-height: $forget_password_line_height;
+  }
+  button {
+    float: $submit_button_postion;
+    width: $submit_button_width;
+    min-width: $submit_button_min_width;
+  }
+  .recaptcha-input {
+    div {
+      margin: $recaptcha_margins;
+    }
+  }
+}
