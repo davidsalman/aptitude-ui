@@ -3,18 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/icons": "^4.9.1",
+    "@ant-design/icons": "^4.2.2",
+    "antd": "^4.7.2",
     "env-cmd": "^10.1.0",
     "firebase": "^7.23.0",
+    "formik": "^2.2.5",
+    "formik-antd": "^2.0.1",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-recaptcha-v3": "^2.0.1",
     "react-redux": "^7.2.1",
+    "react-redux-firebase": "^3.7.0",
+    "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "redux": "^4.0.5"
+    "recompose": "^0.30.0",
+    "redux": "^4.0.5",
+    "redux-firestore": "^0.14.0",
+    "yup": "^0.29.3"
   },
   "devDependencies": {
+    "@testing-library/dom": "^7.26.3",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -22,16 +32,23 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "@types/react-recaptcha-v3": "^1.1.1",
+    "@types/react-redux": "^7.1.9",
     "@types/react-router": "^5.1.8",
     "@types/react-router-dom": "^5.1.6",
+    "@types/recompose": "^0.30.7",
+    "@types/redux": "^3.6.0",
+    "@types/yup": "^0.29.9",
+    "redux-devtools-extension": "^2.13.8",
     "tslint": "^6.1.3",
-    "typescript": "~3.7.2"
+    "typescript": "^4.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "env-cmd -r .env-cmdrc.json -e common,development react-scripts start",
+    "build": "env-cmd -r .env-cmdrc.json -e common,production react-scripts build",
+    "test": "env-cmd -r .env-cmdrc.json -e common,testing react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "tslint --project --fix tsconfig.json"
   },
   "eslintConfig": {
     "extends": "react-app"
