@@ -1,0 +1,13 @@
+$background_color: white;
+$layout_margins: 5% auto;
+$max_width: 45%;
+$min_width: 360px;
+$padding: 40px;
+
+.error-layout {
+  background-color: $background_color;
+  margin: $layout_margins;
+  max-width: $max_width;
+  min-width: $min_width;
+  padding: $padding;
+}
