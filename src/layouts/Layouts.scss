@@ -28,7 +28,7 @@ $footer_text_align: center;
 /* Layout Mixins */
 
 @mixin calculateContentHeight($takenHeaderHeight, $takenFooterHeight) {
-  min-height: calc(97.2vh - (#{$takenHeaderHeight} + #{$takenFooterHeight}));
+  min-height: calc(96.9vh - (#{$takenHeaderHeight} + #{$takenFooterHeight}));
 }
 
 /* Layout Classes */
