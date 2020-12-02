@@ -18,8 +18,8 @@ import AppLayout from './layouts/AppLayout';
 import SignInView from './views/SignInView';
 import RegisterView from './views/RegisterView';
 import ForgotPasswordView from './views/ForgotPasswordView';
+import PageNotFoundView from './views/PageNotFoundView';
 import DashboardView from './views/app/DashboardView';
-
 
 const App = () => {
   useEffect(() => {
@@ -41,10 +41,12 @@ const App = () => {
             <DefaultRoutes>
               <DefaultLayout>
                 <Switch>
-                  <Route exact path={routes.default.LANDING} render={() => <Redirect to={routes.default.SIGN_IN} />} />
                   <Route exact path={routes.default.SIGN_IN} component={SignInView} />
                   <Route exact path={routes.default.REGISTER} component={RegisterView} />
                   <Route exact path={routes.default.FORGOT_PASSWORD} component={ForgotPasswordView} />
+                  <Route exact path={routes.error.PAGE_NOT_FOUND} component={PageNotFoundView} />
+                  <Route exact path={routes.default.DEFAULT_LANDING} render={() => <Redirect to={routes.default.SIGN_IN} />} />
+                  <Route exact path={routes.error.ERROR_ROUTES} render={() => <Redirect to={routes.error.PAGE_NOT_FOUND} />} />
                 </Switch>
               </DefaultLayout>
             </DefaultRoutes>

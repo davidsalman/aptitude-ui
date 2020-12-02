@@ -1,6 +1,6 @@
 const routes = {
   default: {
-    LANDING: '/',
+    DEFAULT_LANDING: '/',
     SIGN_IN: '/sign-in',
     REGISTER: '/register',
     FORGOT_PASSWORD: '/forgot-password'
@@ -22,9 +22,8 @@ const routes = {
     ADMIN_PROFILE: '/admin/admin-profile'
   },
   error: {
-    ERROR_ROUTES: '*',
-    INVALID: '/error/404-invalid',
-    UNAUTHORIZED: '/error/401-unauthorized'
+    ERROR_ROUTES: '/*',
+    PAGE_NOT_FOUND: '/error/404-page-not-found'
   }
 }
 
