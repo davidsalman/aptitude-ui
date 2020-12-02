@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 import { isLoaded, isEmpty, FirebaseReducer } from 'react-redux-firebase';
 import { Redirect, Route } from 'react-router-dom';
 import { AppState } from '../../redux';
-import Spinner from '../common/Spinner'
+import Spinner from '../common/Spinner';
+import routes from '../../configs/routes';
 
 interface IAppRoutesProp {
   children: ReactNode;
@@ -28,10 +29,9 @@ const AppRoutes = ({ children, ...rest }: IAppRoutesProp) => {
         } else if (isLoaded(auth) && !isEmpty(auth)) {
           return children;
         } else {
-          return <Redirect to={{ pathname: "/sign-in", state: { from: location } }} />
+          return <Redirect to={{ pathname: routes.error.UNAUTHORIZED_ACCESS, state: { from: location } }} />
         }
-      }
-      }
+      }}
     />
   );
 }

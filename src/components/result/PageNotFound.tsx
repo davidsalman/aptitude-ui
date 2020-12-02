@@ -9,8 +9,8 @@ const PageNotFound = () => {
     <Result
       status="404"
       title="404 - Page Not Found!"
-      subTitle="Sorry, the page you visited does not exist. Please click the 'Go Home' button to start over."
-      extra={<Button type="primary" onClick={() => history.push(routes.default.SIGN_IN)} >Go Home</Button>}
+      subTitle="Sorry, the page you visited does not exist. Please click the 'Dashboard Page' button to start over."
+      extra={<Button type="primary" onClick={() => history.push(routes.app.DASHBOARD)} >Dashboard Page</Button>}
     />
   );
 }

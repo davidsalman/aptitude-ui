@@ -20,6 +20,7 @@ import RegisterView from './views/RegisterView';
 import ForgotPasswordView from './views/ForgotPasswordView';
 import PageNotFoundView from './views/PageNotFoundView';
 import DashboardView from './views/app/DashboardView';
+import UnauthorizedAccessView from './views/UnauthorizedAccessView';
 
 const App = () => {
   useEffect(() => {
@@ -33,8 +34,9 @@ const App = () => {
             <AppRoutes exact path={routes.app.APP_ROUTES}>
               <AppLayout>
                 <Switch>
-                  <Route exact path={routes.app.APP_LANDING} render={() => <Redirect to={routes.app.DASHBOARD} />} />
                   <Route exact path={routes.app.DASHBOARD} component={DashboardView} />
+                  <Route exact path={routes.app.APP_LANDING} render={() => <Redirect to={routes.app.DASHBOARD} />} />
+                  <Route exact path={routes.error.ERROR_ROUTES} render={() => <Redirect to={routes.error.PAGE_NOT_FOUND} />} />
                 </Switch>
               </AppLayout>
             </AppRoutes>
@@ -45,6 +47,7 @@ const App = () => {
                   <Route exact path={routes.default.REGISTER} component={RegisterView} />
                   <Route exact path={routes.default.FORGOT_PASSWORD} component={ForgotPasswordView} />
                   <Route exact path={routes.error.PAGE_NOT_FOUND} component={PageNotFoundView} />
+                  <Route exact path={routes.error.UNAUTHORIZED_ACCESS} component={UnauthorizedAccessView} />
                   <Route exact path={routes.default.DEFAULT_LANDING} render={() => <Redirect to={routes.default.SIGN_IN} />} />
                   <Route exact path={routes.error.ERROR_ROUTES} render={() => <Redirect to={routes.error.PAGE_NOT_FOUND} />} />
                 </Switch>
