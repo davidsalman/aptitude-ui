@@ -23,7 +23,8 @@ const routes = {
   },
   error: {
     ERROR_ROUTES: '/*',
-    PAGE_NOT_FOUND: '/error/404-page-not-found'
+    PAGE_NOT_FOUND: '/error/404-page-not-found',
+    UNAUTHORIZED_ACCESS: '/error/403-unauthorized-access'
   }
 }
 
