@@ -11,7 +11,7 @@
     "**/.git-crypt": true
   },
   "tslint.autoFixOnSave": true,
-  "tslint.configFile": "./tslint.json",
+  "tslint.configFile": "tslint.json",
   "tslint.packageManager": "yarn",
   "prettier.configPath": ".prettierrc",
   "prettier.packageManager": "yarn",
