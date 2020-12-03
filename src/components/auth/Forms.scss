@@ -3,8 +3,18 @@ $submit_button_width: 30%;
 $submit_button_min_width: 100px;
 $submit_button_postion: right;
 $recaptcha_margins: 0px auto;
+$steps_margin_bottom: 30px;
+$text_area_width: 100%;
+$text_area_height: 25vh;
 
 .auth-form {
+  .auth-steps {
+    margin-bottom: $steps_margin_bottom;
+  }
+  textarea {
+    width: $text_area_width;
+    height: $text_area_height;
+  }
   a {
     line-height: $forget_password_line_height;
   }
