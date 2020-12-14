@@ -1,0 +1,16 @@
+$background_color: white;
+$layout_margins: 0px auto;
+$max_width: 100%;
+$min_width: 360px;
+$media_max_width: 40%;
+$min_height: 93vh;
+$padding: 20px;
+
+.content-layout {
+  background-color: $background_color;
+  margin: $layout_margins;
+  max-width: $max_width;
+  min-width: $min_width;
+  min-height: $min_height;
+  padding: $padding;
+}

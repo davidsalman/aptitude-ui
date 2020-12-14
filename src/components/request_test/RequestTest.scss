@@ -1,0 +1,59 @@
+.request-test-content {
+  width: 100%;
+  .select-box-grid {
+    min-height: 67.5vh;
+    .select-box-grid-item {
+      min-width: 180px;
+      height: 25vh;
+      border-radius: 10px;
+      border-color: white;
+      border-style: solid;
+      border-width: 2px;
+      background-color: #1890ff;
+      .select-box-grid-item-title {
+        margin-top: 6vh;
+      }
+      .select-box-grid-item-title,
+      .select-box-grid-item-description {
+        color: white;
+        text-align: center;
+      }
+    }
+    .select-box-grid-item-selected,
+    .select-box-grid-item:hover {
+      border-color: rgba(14, 12, 12, 0.377);
+    }
+  }
+  .select-box-options {
+    max-height: 2.5vh;
+    .select-box-next-step-button {
+      margin-left: auto;
+      width: 20vw;
+    }
+  }
+  .start-test-info {
+    min-height: 67.5vh;
+  }
+  .start-test-options {
+    max-height: 2.5vh;
+    display: inline;
+    .start-test-prev-step-button {
+      width: 20vw;
+      float: left;
+      clear: left;
+    }
+    .start-test-start-test-button {
+      width: 20vw;
+      float: right;
+    }
+  }
+  .test-progress-game-grid {
+    .progress-circle {
+      margin: 10px 5.25%;
+    }
+  }
+}
+
+.loading-request-test-content {
+  margin-top: 25vh;
+}

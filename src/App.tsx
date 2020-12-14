@@ -19,8 +19,9 @@ import SignInView from './views/SignInView';
 import RegisterView from './views/RegisterView';
 import ForgotPasswordView from './views/ForgotPasswordView';
 import PageNotFoundView from './views/PageNotFoundView';
-import DashboardView from './views/app/DashboardView';
 import UnauthorizedAccessView from './views/UnauthorizedAccessView';
+import DashboardView from './views/app/DashboardView';
+import RequestTestView from './views/app/RequestTestView';
 
 const App = () => {
   useEffect(() => {
@@ -35,6 +36,7 @@ const App = () => {
               <AppLayout>
                 <Switch>
                   <Route exact path={routes.app.DASHBOARD} component={DashboardView} />
+                  <Route exact path={routes.app.REQUEST_TEST} component={RequestTestView} />
                   <Route exact path={routes.app.APP_LANDING} render={() => <Redirect to={routes.app.DASHBOARD} />} />
                   <Route exact path={routes.error.ERROR_ROUTES} render={() => <Redirect to={routes.error.PAGE_NOT_FOUND} />} />
                 </Switch>

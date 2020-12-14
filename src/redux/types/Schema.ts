@@ -1,5 +1,13 @@
+export interface IBox {
+  company: string;
+  location: string;
+  name: string;
+  taken: boolean;
+};
+
 export interface IGame {
   alive: boolean;
+  box_id: string;
   completed_at: number;
   max_score: number;
   max_strikes: number;
@@ -10,14 +18,16 @@ export interface IGame {
   strikes: number;
 };
 
-export interface IBox {
-  company: string;
-  game_collection: string[];
-  location: string;
-  name: string;
+export interface ISession {
+  active: boolean;
+  box_id: string;
+  completed_at: number;
+  started_at: number;
+  user_id: string;
 };
 
 export interface ISchema {
   boxes: IBox;
   games: IGame;
+  sessions: ISession;
 };
