@@ -7,6 +7,7 @@ import { CheckCircleOutlined, ClockCircleOutlined, CodeSandboxOutlined, InfoCirc
 import SelectBox from '../../components/request_test/SelectBox';
 import StartTest from '../../components/request_test/StartTest';
 import TestProgress from '../../components/request_test/TestProgress';
+import TestResult from '../../components/request_test/TestResult';
 import './AppViews.scss';
 
 const { Step } = Steps;
@@ -26,7 +27,6 @@ const RequestTestView = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [boxID, setBoxID] = useState("");
   const [sessionID, setSessionID] = useState("");
-  const [resultID, setResultID] = useState("");
 
   // View function
   const nextStep = () => {
@@ -64,7 +64,8 @@ const RequestTestView = () => {
         switch (currentStep) {
           case 0: return <SelectBox setNextStepHandler={nextStep} setBoxHandler={setBoxID} />;
           case 1: return <StartTest setNextStepHandler={nextStep} setPrevStepHandler={prevStep} setSessionHandler={setSessionID} boxId={boxID} />;
-          case 2: return <TestProgress setNextStepHandler={nextStep} setResultHandler={setResultID} sessionId={sessionID} />;
+          case 2: return <TestProgress setNextStepHandler={nextStep} sessionId={sessionID} />;
+          case 3: return <TestResult sessionId={sessionID} />
           default: return null;
         }
       })()}

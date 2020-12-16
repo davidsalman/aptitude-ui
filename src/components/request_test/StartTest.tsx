@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Result, Button, Typography, Layout } from 'antd';
+import { Result, Button, Image, Typography, Layout } from 'antd';
 import { CloseCircleTwoTone, CheckCircleTwoTone } from '@ant-design/icons';
 import {
   ExtendedFirebaseInstance,
@@ -26,9 +26,9 @@ const StartTest = ({ setNextStepHandler, setPrevStepHandler, setSessionHandler, 
   useFirebaseConnect([
     { path: `boxes/${boxId}` }
   ]);
-  const box = useSelector((state: AppState) => state.firebase.ordered.boxes.find(_box => _box.key === boxId));
-  const auth: FirebaseReducer.AuthState = useSelector((state: AppState) => state.firebase.auth);
   const firebase: ExtendedFirebaseInstance = useFirebase();
+  const auth: FirebaseReducer.AuthState = useSelector((state: AppState) => state.firebase.auth);
+  const box = useSelector((state: AppState) => state.firebase.ordered.boxes.find(_box => _box.key === boxId));
   const [understood, setUnderstood] = useState(false);
   const startTest = async () => {
     try {
@@ -67,6 +67,7 @@ const StartTest = ({ setNextStepHandler, setPrevStepHandler, setSessionHandler, 
       <Result
         className="start-test-info"
         title={`You have selected ${box?.value.company}'s ${box?.value.name} located at ${box?.value.location}. Before you begin ...`}
+        icon={<Image src="/images/aptitude-box.jpg" width={360} />}
         extra={<>
           <Text>
             1) Please ensure that the skill testing box (a.k.a Aptitude Box) with the name of {box?.value.name} is in front of you.<br />

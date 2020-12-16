@@ -1,11 +1,12 @@
 import React from 'react';
-import { useFirebaseConnect, useFirestore, isEmpty, isLoaded } from 'react-redux-firebase';
+import { useFirebaseConnect, useFirestore, useFirebase, isEmpty, isLoaded, ExtendedFirebaseInstance, ExtendedFirestoreInstance, FirebaseReducer } from 'react-redux-firebase';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../redux';
 import { IGame } from '../../redux/types';
-import { Badge, Button, Card, Col, Descriptions, Layout, Empty, Row, Spin, Statistic, Tag, Typography, Progress } from 'antd';
-import { ApiTwoTone, AppstoreTwoTone, CalendarTwoTone, CheckCircleOutlined, CheckSquareTwoTone, ClockCircleTwoTone, CloseCircleOutlined, CloseSquareTwoTone, FlagTwoTone, FundTwoTone, HourglassTwoTone, LoadingOutlined, SyncOutlined } from '@ant-design/icons';
+import { Badge, Button, Card, Col, Descriptions, Layout, Empty, Image, Row, Spin, Statistic, Tag, Typography, Progress } from 'antd';
+import { ApiTwoTone, AppstoreTwoTone, CalendarTwoTone, CheckCircleOutlined, CheckCircleTwoTone, ClockCircleTwoTone, CloseCircleOutlined, CloseCircleTwoTone, HourglassTwoTone, LoadingOutlined, SyncOutlined } from '@ant-design/icons';
+import { openNotification } from '../common/Notifcation';
 import routes from '../../configs/routes';
 import './RequestTest.scss';
 
@@ -14,19 +15,20 @@ const { Item } = Descriptions;
 
 interface ITestProgress {
   setNextStepHandler: () => void;
-  setResultHandler: (resultID: string) => void;
   sessionId: string;
 }
 
-const TestProgress = ({ setNextStepHandler, setResultHandler, sessionId }: ITestProgress) => {
+const TestProgress = ({ setNextStepHandler, sessionId }: ITestProgress) => {
   useFirebaseConnect([
     { path: `sessions/${sessionId}` },
     { path: 'games' }
   ]);
+  const history = useHistory();
+  const firebase: ExtendedFirebaseInstance = useFirebase();
+  const firestore: ExtendedFirestoreInstance = useFirestore();
+  const auth: FirebaseReducer.AuthState = useSelector((state: AppState) => state.firebase.auth);
   const session = useSelector((state: AppState) => state.firebase.ordered.sessions.find(_session => _session.key === sessionId));
   const games = useSelector((state: AppState) => state.firebase.ordered.games);
-  const history = useHistory();
-  const firestore = useFirestore();
   const switchStatusBadge = (status: string) => {
     switch (status) {
       case 'Initializing':
@@ -46,17 +48,23 @@ const TestProgress = ({ setNextStepHandler, setResultHandler, sessionId }: ITest
     else
       return <Badge status="error">{title}</Badge>;
   }
-  const submitTest = (results: { key: string, value: IGame }[]) => {
-    firestore.collection('results').add({
-
-    }).then(
-      (reference) => {
-        setResultHandler(reference.id);
-        setNextStepHandler();
-      },
-      (reason) => {
-
+  const submitTest = async (results: { key: string, value: IGame }[]) => {
+    try {
+      results.forEach(async game => {
+        const { value: { box_id, completed_at, max_score, max_strikes, name, score, started_at, strikes, status } } = game;
+        await firestore.collection('results').add({ box_id, completed_at, max_score, max_strikes, name, score, started_at, strikes, status, session_id: session?.key, user_id: auth.uid });
       });
+      await firebase.update(`boxes/${session?.value.box_id}`, { taken: false });
+      await firebase.update(`sessions/${session?.key}`, { active: false, completed_at: new Date().getTime() });
+      setNextStepHandler();
+      openNotification({
+        message: "Test Session Completed!",
+        description: "Preparing test result for current session ...",
+        icon: <CheckCircleTwoTone twoToneColor="#52c41a" />
+      });
+    } catch (error) {
+      openNotification({ message: error.code, description: error.message, icon: <CloseCircleTwoTone twoToneColor="#ff4d4f" /> });
+    }
   }
   if (!isLoaded(games)) {
     return (
@@ -74,6 +82,7 @@ const TestProgress = ({ setNextStepHandler, setResultHandler, sessionId }: ITest
     return (
       <Layout className="request-test-content">
         <Empty
+          className="empty-result"
           image={Empty.PRESENTED_IMAGE_DEFAULT}
           description={
             <Typography.Title level={3}>
@@ -86,9 +95,6 @@ const TestProgress = ({ setNextStepHandler, setResultHandler, sessionId }: ITest
         </Empty>
       </Layout>
     );
-  }
-  if (games.filter(game => game.value.completed_at !== 0).length === games.length) {
-    submitTest(games);
   }
   return (
     <Layout className="request-test-content">
@@ -109,28 +115,6 @@ const TestProgress = ({ setNextStepHandler, setResultHandler, sessionId }: ITest
             value={new Date(session?.value.started_at || new Date().getTime()).getTime() + 1000 * 60 * 20}
           />
         </Col>
-        <Col offset={2} span={6} key="total_score">
-          <Statistic title="Total Score" prefix={<FundTwoTone twoToneColor={["green", "white"]} />}
-            value={`${games.map(game => game.value.score).reduce((prev, next) => prev + next)}
-              / ${games.map(game => game.value.max_score).reduce((prev, next) => prev + next)}`}
-          />
-        </Col>
-        <Col span={5} key="total_strikes">
-          <Statistic title="Total Strike" prefix={<CloseSquareTwoTone twoToneColor="red" />}
-            value={`${games.map(game => game.value.strikes).reduce((prev, next) => prev + next)}
-              / ${games.map(game => game.value.max_strikes).reduce((prev, next) => prev + next)}`}
-          />
-        </Col>
-        <Col span={6} key="total_struckout">
-          <Statistic title="Strike Outs" prefix={<FlagTwoTone twoToneColor="red" />}
-            value={`${games.filter(game => game.value.strikes === game.value.max_strikes).length}/${games.length}`}
-          />
-        </Col>
-        <Col span={5} key="session_timeout">
-          <Statistic title="Completed" prefix={<CheckSquareTwoTone twoToneColor={["green", "white"]} />}
-            value={`${games.filter(game => game.value.completed_at !== 0).length}/${games.length}`}
-          />
-        </Col>
       </Row>
       <Row gutter={[10, 10]} justify="space-between" className="test-progress-game-grid">
         {games.filter(game => game.value.box_id === session?.value.box_id).map((game, index) => {
@@ -139,9 +123,10 @@ const TestProgress = ({ setNextStepHandler, setResultHandler, sessionId }: ITest
           return (
             <Col flex="1 2 350px" span={6} key={key}>
               <Card title={switchTitleAliveStatus(name, alive)} extra={switchStatusBadge(status)}>
+                <Image src={`/images/${index}.jpg`} width={"100%"} />
                 <Progress className="progress-circle" type="circle" percent={(score / max_score) * 100} />
                 <Progress className="progress-circle" type="circle" percent={(strikes / max_strikes) * 100} status="exception" />
-                <Descriptions layout="vertical" bordered={true}>
+                <Descriptions layout="vertical" size="small" bordered>
                   <Item label="Score" span={2}>{score} / {max_score}</Item>
                   <Item label="Strikes">{strikes} / {max_strikes}</Item>
                   <Item label="Started At">{started_at === 0 ? 'N/A' : new Date(started_at).toLocaleString()}</Item>
@@ -152,6 +137,15 @@ const TestProgress = ({ setNextStepHandler, setResultHandler, sessionId }: ITest
           );
         })}
       </Row>
+      <Layout className="test-progress-options">
+        <Button
+          type="primary"
+          className="test-progress-submit-test-button"
+          disabled={games.filter(game => game.value.completed_at !== 0).length !== games.length}
+          onClick={() => submitTest(games)}>
+          Submit Test Session
+        </Button>
+      </Layout>
     </Layout>
   );
 }

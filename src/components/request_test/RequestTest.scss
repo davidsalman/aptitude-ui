@@ -1,7 +1,8 @@
 .request-test-content {
   width: 100%;
+  background-color: white;
   .select-box-grid {
-    min-height: 67.5vh;
+    min-height: 71.5vh;
     .select-box-grid-item {
       min-width: 180px;
       height: 25vh;
@@ -26,15 +27,17 @@
   }
   .select-box-options {
     max-height: 2.5vh;
+    background-color: white;
     .select-box-next-step-button {
       margin-left: auto;
       width: 20vw;
     }
   }
   .start-test-info {
-    min-height: 67.5vh;
+    min-height: 71.5vh;
   }
   .start-test-options {
+    background-color: white;
     max-height: 2.5vh;
     display: inline;
     .start-test-prev-step-button {
@@ -49,8 +52,32 @@
   }
   .test-progress-game-grid {
     .progress-circle {
-      margin: 10px 5.25%;
+      margin: 10px 5.75%;
     }
+  }
+  .test-progress-options {
+    background-color: white;
+    max-height: 2.5vh;
+    display: inline;
+    .test-progress-submit-test-button {
+      width: 20vw;
+      float: right;
+    }
+  }
+  .test-result-stats-grid {
+    width: 100%;
+    .test-result-header {
+      text-align: center;
+    }
+  }
+  .test-result-list {
+    .result-line {
+      margin-top: 10px;
+    }
+  }
+
+  .empty-results {
+    margin-top: 20vh;
   }
 }
 

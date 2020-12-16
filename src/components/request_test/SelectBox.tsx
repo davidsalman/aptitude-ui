@@ -19,8 +19,8 @@ const SelectBox = ({ setNextStepHandler, setBoxHandler }: ISelectBox) => {
   useFirebaseConnect([
     { path: 'boxes' }
   ]);
-  const boxes = useSelector((state: AppState) => state.firebase.ordered.boxes);
   const history = useHistory();
+  const boxes = useSelector((state: AppState) => state.firebase.ordered.boxes);
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(undefined);
   if (!isLoaded(boxes)) {
     return (
@@ -38,11 +38,12 @@ const SelectBox = ({ setNextStepHandler, setBoxHandler }: ISelectBox) => {
     return (
       <Layout className="request-test-content">
         <Empty
+          className="empty-result"
           image={Empty.PRESENTED_IMAGE_DEFAULT}
           description={
-            <Typography.Title level={3}>
+            <Title level={3}>
               "No Boxes Found! Please wait till one becomes available."
-            </Typography.Title>
+            </Title>
           }>
           <Button type="primary" onClick={() => history.push(routes.app.DASHBOARD)}>
             Go to Dashboard
