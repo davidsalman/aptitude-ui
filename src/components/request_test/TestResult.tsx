@@ -108,8 +108,8 @@ const TestResult = ({ sessionId }: ITestResult) => {
       <Table dataSource={filteredResults} bordered pagination={false}>
         <Column title="Game Name" dataIndex="name" key="name" />
         <ColumnGroup title="Duration">
-          <Column title="Started At" dataIndex="started_at" key="started_at" render={started_at => (started_at === 0 ? 'N/A' : new Date(started_at).toLocaleString())} />
-          <Column title="Completed At" dataIndex="completed_at" key="completed_at" render={completed_at => (completed_at === 0 ? 'N/A' : new Date(completed_at).toLocaleString())} />
+          <Column title="Started At" dataIndex="started_at" key="started_at" render={startedAt => (startedAt === 0 ? 'N/A' : new Date(startedAt).toLocaleString())} />
+          <Column title="Completed At" dataIndex="completed_at" key="completed_at" render={completedAt => (completedAt === 0 ? 'N/A' : new Date(completedAt).toLocaleString())} />
         </ColumnGroup>
         <ColumnGroup title="Score">
           <Column title="Your Score" dataIndex="score" key="score" />
