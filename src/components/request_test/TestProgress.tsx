@@ -56,7 +56,6 @@ const TestProgress = ({ setNextStepHandler, sessionId }: ITestProgress) => {
         const { value: { box_id, completed_at, max_score, max_strikes, name, score, started_at, strikes, status } } = game;
         await firestore.collection('results').add({ box_id, completed_at, max_score, max_strikes, name, score, started_at, strikes, status, session_id: session?.key, session_start: session?.value.started_at, session_end: new Date().getTime(), user_id: auth.uid });
       });
-      await new Promise(r => setTimeout(r, 2000));
       setNextStepHandler();
       openNotification({
         message: "Test Session Completed!",
