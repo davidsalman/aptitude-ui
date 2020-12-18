@@ -1,0 +1,13 @@
+.test-results-content {
+  width: 100%;
+  .test-results-table {
+    background-color: white;
+  }
+  .empty-result {
+    min-height: 70vh;
+  }
+}
+
+.loading-test-result-content {
+  margin-top: 35vh;
+}

@@ -22,6 +22,7 @@ import PageNotFoundView from './views/PageNotFoundView';
 import UnauthorizedAccessView from './views/UnauthorizedAccessView';
 import DashboardView from './views/app/DashboardView';
 import RequestTestView from './views/app/RequestTestView';
+import TestResultView from './views/app/TestResultsView';
 
 const App = () => {
   useEffect(() => {
@@ -37,6 +38,7 @@ const App = () => {
                 <Switch>
                   <Route exact path={routes.app.DASHBOARD} component={DashboardView} />
                   <Route exact path={routes.app.REQUEST_TEST} component={RequestTestView} />
+                  <Route exact path={routes.app.TEST_RESULTS} component={TestResultView} />
                   <Route exact path={routes.app.APP_LANDING} render={() => <Redirect to={routes.app.DASHBOARD} />} />
                   <Route exact path={routes.error.ERROR_ROUTES} render={() => <Redirect to={routes.error.PAGE_NOT_FOUND} />} />
                 </Switch>

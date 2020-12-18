@@ -50,12 +50,13 @@ const TestProgress = ({ setNextStepHandler, sessionId }: ITestProgress) => {
   }
   const submitTest = async (results: { key: string, value: IGame }[]) => {
     try {
+      await firebase.update(`sessions/${session?.key}`, { active: false, completed_at: new Date().getTime() });
+      await firebase.update(`boxes/${session?.value.box_id}`, { taken: false });
       results.forEach(async game => {
         const { value: { box_id, completed_at, max_score, max_strikes, name, score, started_at, strikes, status } } = game;
-        await firestore.collection('results').add({ box_id, completed_at, max_score, max_strikes, name, score, started_at, strikes, status, session_id: session?.key, user_id: auth.uid });
+        await firestore.collection('results').add({ box_id, completed_at, max_score, max_strikes, name, score, started_at, strikes, status, session_id: session?.key, session_start: session?.value.started_at, session_end: new Date().getTime(), user_id: auth.uid });
       });
-      await firebase.update(`boxes/${session?.value.box_id}`, { taken: false });
-      await firebase.update(`sessions/${session?.key}`, { active: false, completed_at: new Date().getTime() });
+      await new Promise(r => setTimeout(r, 2000));
       setNextStepHandler();
       openNotification({
         message: "Test Session Completed!",

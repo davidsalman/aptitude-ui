@@ -75,9 +75,10 @@
       margin-top: 10px;
     }
   }
-
-  .empty-results {
-    margin-top: 20vh;
+  .empty-result {
+    width: 100%;
+    min-height: 70vh;
+    background-color: white;
   }
 }
 

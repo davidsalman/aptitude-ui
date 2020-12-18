@@ -13,4 +13,27 @@ $padding: 20px;
   min-width: $min_width;
   min-height: $min_height;
   padding: $padding;
+  .dashboard-options {
+    min-height: 71.5vh;
+    .dashboard-option-item {
+      max-width: 40%;
+      height: 25vh;
+      border-radius: 10px;
+      border-color: white;
+      border-style: solid;
+      border-width: 2px;
+      background-color: #1890ff;
+      .dashboard-options-title {
+        margin-top: 6vh;
+      }
+      .dashboard-options-title,
+      .dashboard-options-description {
+        color: white;
+        text-align: center;
+      }
+    }
+  }
+  .dashboard-option-item:hover {
+    border-color: rgba(14, 12, 12, 0.377);
+  }
 }

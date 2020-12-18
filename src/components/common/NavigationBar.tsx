@@ -21,7 +21,6 @@ const AppNavigation = () => {
     <Menu
       theme="dark"
       mode="horizontal"
-      defaultSelectedKeys={["2"]}
       className="navigation-menu"
     >
       <Menu.Item key="1" disabled={true} className="navigation-menu-icon-item">
