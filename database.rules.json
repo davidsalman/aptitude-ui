@@ -1,12 +1,16 @@
 {
   "rules": {
     "boxes": {
-      ".read": "auth.uid === 'aptitude-box-service-worker'",
-      ".write": "auth.uid === 'aptitude-box-service-worker'"
+      ".read": "auth.uid != null",
+      ".write": "auth.uid != null || auth.uid === 'aptitude-box-service-worker'"
     },
     "games": {
-      ".read": "auth.uid === 'aptitude-box-service-worker'",
-      ".write": "auth.uid === 'aptitude-box-service-worker'"
+      ".read": "auth.uid != null",
+      ".write": "auth.uid != null || auth.uid === 'aptitude-box-service-worker'"
+    },
+    "sessions": {
+      ".read": "auth.uid != null",
+      ".write": "auth.uid != null"
     },
     "users": {
       "$uid": {

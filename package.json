@@ -48,7 +48,7 @@
     "build": "env-cmd -r .env-cmdrc.json -e common,production react-scripts build",
     "test": "env-cmd -r .env-cmdrc.json -e common,testing react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "tslint --project --fix tsconfig.json"
+    "lint": "tslint --project tsconfig.json --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
